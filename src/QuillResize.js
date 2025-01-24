@@ -323,5 +323,5 @@ export default class QuillResize {
 }
 
 if (window.Quill) {
-  window.Quill.register('modules/resize', QuillResize)
+  window.Quill.register('modules/imageResize', QuillResize)
 }
