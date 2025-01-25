@@ -17,6 +17,11 @@ const ClassAttributor = Parchment.ClassAttributor
   : Parchment.Attributor.Class
 const ImageFormatClass = new ClassAttributor('imagestyle', 'ql-resize-style')
 
+const FloatStyle = new Parchment.StyleAttributor('float', 'float');
+const MarginStyle = new Parchment.StyleAttributor('margin', 'margin');
+const DisplayStyle = new Parchment.StyleAttributor('display', 'display');
+const WidthStyle = new Parchment.StyleAttributor('width', 'width');
+
 export default class Toolbar extends BaseModule {
   static Icons = {
     left: IconAlignLeft,
@@ -29,7 +34,11 @@ export default class Toolbar extends BaseModule {
   static Tools = {
     left: {
       apply (activeEle) {
-        ImageFormatClass.add(activeEle, 'left')
+        ImageFormatClass.add(activeEle, 'left');
+        DisplayStyle.add(activeEle, 'inline');
+        FloatStyle.add(activeEle, 'left');
+        MarginStyle.add(activeEle, '0 1em 1em 0');
+        WidthStyle.remove(activeEle);
       },
       isApplied (activeEle) {
         return ImageFormatClass.value(activeEle) === 'left'
@@ -37,7 +46,11 @@ export default class Toolbar extends BaseModule {
     },
     center: {
       apply (activeEle) {
-        ImageFormatClass.add(activeEle, 'center')
+        ImageFormatClass.add(activeEle, 'center');
+        DisplayStyle.add(activeEle, 'block');
+        FloatStyle.remove(activeEle);
+        MarginStyle.add(activeEle, 'auto');
+        WidthStyle.remove(activeEle);
       },
       isApplied (activeEle) {
         return ImageFormatClass.value(activeEle) === 'center'
@@ -45,7 +58,11 @@ export default class Toolbar extends BaseModule {
     },
     right: {
       apply (activeEle) {
-        ImageFormatClass.add(activeEle, 'right')
+        ImageFormatClass.add(activeEle, 'right');
+        DisplayStyle.add(activeEle, 'inline');
+        FloatStyle.add(activeEle, 'right');
+        MarginStyle.add(activeEle, '0 0 1em 1em');
+        WidthStyle.remove(activeEle);
       },
       isApplied (activeEle) {
         return ImageFormatClass.value(activeEle) === 'right'
@@ -53,7 +70,11 @@ export default class Toolbar extends BaseModule {
     },
     full: {
       apply (activeEle) {
-        ImageFormatClass.add(activeEle, 'full')
+        ImageFormatClass.add(activeEle, 'full');
+        DisplayStyle.add(activeEle, 'block');
+        FloatStyle.remove(activeEle);
+        MarginStyle.add(activeEle, 'auto');
+        WidthStyle.add(activeEle, '100%');
       },
       isApplied (activeEle) {
         return ImageFormatClass.value(activeEle) === 'full'
